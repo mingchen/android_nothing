@@ -1,6 +1,8 @@
 node {
     stage("checkout") {
         checkout scm
+        sh "pwd"
+        sh "ls -l"
     }
 
     stage("Static code check") {
