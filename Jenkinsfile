@@ -1,4 +1,8 @@
 node {
+    stage("checkout") {
+        checkout scm
+    }
+
     stage("Static code check") {
         sh "./gradlew check"
 
