@@ -8,10 +8,10 @@ node {
     stage("Static code check") {
         sh "pwd"
         sh "ls -l"
-        sh "./gradlew check"
+        //sh "./gradlew check"
 
         // publish Android lint result
-        androidLint canComputeNew: false, defaultEncoding: '', healthy: '', pattern: '', unHealthy: ''
+        //androidLint canComputeNew: false, defaultEncoding: '', healthy: '', pattern: '', unHealthy: ''
     }
 
     stage("Build in docker") {
