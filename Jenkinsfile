@@ -1,4 +1,4 @@
-node {
+node("mep-lab-10") {
     stage("checkout") {
         checkout scm
         sh "pwd"
