@@ -6,6 +6,8 @@ node {
     }
 
     stage("Static code check") {
+        sh "pwd"
+        sh "ls -l"
         sh "./gradlew check"
 
         // publish Android lint result
@@ -13,6 +15,8 @@ node {
     }
 
     stage("Build in docker") {
+        sh "pwd"
+        sh "ls -l"
         docker.image("mingc/android-build-box:latest").inside {
             stage("Compile") {
                 sh "./gradlew build"
