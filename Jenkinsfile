@@ -12,24 +12,24 @@ node("mep-lab-10") {
         //sh "./gradlew check"
 
         // publish Android lint result
-        androidLint canComputeNew: false, defaultEncoding: '', healthy: '', pattern: '', unHealthy: ''
+        //androidLint canComputeNew: false, defaultEncoding: '', healthy: '', pattern: '', unHealthy: ''
     }
 
-    //stage("Build in docker") {
-    //    sh "pwd"
-    //    sh "ls -l"
-    //    docker.image("mingc/android-build-box:latest").inside {
-    //        stage("Compile") {
-    //            sh "./gradlew build"
-    //        }
-    //
-    //        stage("Archive packages") {
-    //            archive(includes: "app/build/outputs")
-    //        }
-    //
-    //        stage("Clean") {
-    //            sh "./gradlew clean"
-    //        }
-    //    }
-    //}
+    stage("Build in docker") {
+        sh "pwd"
+        sh "ls -l"
+        docker.image("mingc/android-build-box:latest").inside {
+            stage("Compile") {
+                sh "./gradlew build"
+            }
+
+            stage("Archive packages") {
+                archive(includes: "app/build/outputs")
+            }
+
+            stage("Clean") {
+                sh "./gradlew clean"
+            }
+        }
+    }
 }
