@@ -35,11 +35,12 @@ node("mep-lab-10") {
 
     stage("Publish static analyze results") {
         // publish Android lint result
-        androidLint canComputeNew: false, defaultEncoding: '', healthy: '', pattern: '', unHealthy: ''
+        sh "echo Publish Android lint result"
+        //androidLint canComputeNew: false, defaultEncoding: '', healthy: '', pattern: '', unHealthy: ''
     }
 
     stage("Archive packages") {
-        sh "ls -l app/build/outputs"
+        sh "find app/build/outputs"
         //archive(includes: "app/build/outputs")
         archiveArtifacts artifacts: "app/build/outputs", excludes: "app/build/outputs/logs"
     }
