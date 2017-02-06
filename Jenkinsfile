@@ -41,6 +41,6 @@ node("mep-lab-10") {
     stage("Archive packages") {
         sh "ls -l app/build/outputs"
         //archive(includes: "app/build/outputs")
-        archiveArtifacts artifacts: "app/build/outputs" excludes: "app/build/outputs/logs"
+        archiveArtifacts artifacts: "app/build/outputs", excludes: "app/build/outputs/logs"
     }
 }
