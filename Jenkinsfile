@@ -1,8 +1,8 @@
 pipeline {
     agent {
         docker {
-            image: "mingc/android-build-box:latest"
-            //label: "mep-lab-10"
+            image "mingc/android-build-box:latest"
+            //label "mep-lab-10"
         }
     }
 
