@@ -24,9 +24,9 @@ node("mep-lab-10") {
                 sh "./gradlew check build"
             }
 
-    //        stage("Archive packages") {
-    //            archive(includes: "app/build/outputs")
-    //        }
+            stage("Archive packages") {
+                archive(includes: "app/build/outputs")
+            }
 
     //        stage("Clean") {
     //            sh "./gradlew clean"
@@ -37,12 +37,12 @@ node("mep-lab-10") {
     stage("Publish static analyze results") {
         // publish Android lint result
         sh "echo Publish Android lint result"
-        //androidLint canComputeNew: false, defaultEncoding: '', healthy: '', pattern: '', unHealthy: ''
+        androidLint canComputeNew: false, defaultEncoding: '', healthy: '', pattern: '', unHealthy: ''
     }
 
     stage("Archive packages") {
         sh "find app/build/outputs"
-        //archive(includes: "app/build/outputs")
-        archiveArtifacts artifacts: "app/build/outputs", excludes: "app/build/outputs/logs", fingerprint: true
+        archive(includes: "app/build/outputs")
+        //archiveArtifacts artifacts: "app/build/outputs", excludes: "app/build/outputs/logs", fingerprint: true
     }
 }
