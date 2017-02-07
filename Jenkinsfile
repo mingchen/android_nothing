@@ -8,26 +8,34 @@ pipeline {
 
     stages {
         stage("checkout") {
-            checkout scm
-            sh "env"
-            sh "pwd"
-            sh "ls -l"
+            steps {
+                checkout scm
+                sh "env"
+                sh "pwd"
+                sh "ls -l"
+            }
         }
 
         stage("Compile") {
-            sh "./gradlew check build"
+            steps {
+                sh "./gradlew check build"
+            }
         }
 
         stage("Publish static analyze results") {
-            // publish Android lint result
-            sh "echo Publish Android lint result"
-            androidLint canComputeNew: false, defaultEncoding: '', healthy: '', pattern: '', unHealthy: ''
+            steps {
+                // publish Android lint result
+                sh "echo Publish Android lint result"
+                androidLint canComputeNew: false, defaultEncoding: '', healthy: '', pattern: '', unHealthy: ''
+            }
         }
 
         stage("Archive packages") {
-            archive(includes: "app")
-            //archive(includes: "app/build/outputs")
-            //archiveArtifacts artifacts: "**/app/build/outputs", excludes: "**/app/build/outputs/logs"
+            steps {
+                archive(includes: "app")
+                //archive(includes: "app/build/outputs")
+                //archiveArtifacts artifacts: "**/app/build/outputs", excludes: "**/app/build/outputs/logs"
+            }
         }
     }
 }
